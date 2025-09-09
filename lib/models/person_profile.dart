@@ -5,6 +5,7 @@ class PersonProfile {
   final List<String> kemampuan;
   final Map<String, String> dataDiri;
   final List<String> citaCitaAtauHarapan;
+  final List<Map<String, String>> portfolio;
 
   const PersonProfile({
     required this.nama,
@@ -13,6 +14,7 @@ class PersonProfile {
     required this.kemampuan,
     required this.dataDiri,
     required this.citaCitaAtauHarapan,
+    required this.portfolio,
   });
 }
 
@@ -41,6 +43,23 @@ final List<PersonProfile> people = [
       'Membuat aplikasi yang membantu UMKM.',
       'Kuliah di bidang Informatika dan aktif di komunitas teknologi.',
     ],
+    portfolio: [
+      {
+        'title': 'Aplikasi To-Do List',
+        'description': 'Aplikasi sederhana untuk mengelola tugas harian dengan Flutter',
+        'tech': 'Flutter, Dart, SQLite'
+      },
+      {
+        'title': 'Website Portfolio',
+        'description': 'Website personal untuk menampilkan project dan skill',
+        'tech': 'HTML, CSS, JavaScript'
+      },
+      {
+        'title': 'Kalkulator BMI',
+        'description': 'Aplikasi mobile untuk menghitung Body Mass Index',
+        'tech': 'Flutter, Dart'
+      },
+    ],
   ),
   PersonProfile(
     nama: 'Bara Dwi Andhika',
@@ -66,6 +85,23 @@ final List<PersonProfile> people = [
       'Berkarier sebagai Software Engineer di startup teknologi.',
       'Berbagi ilmu lewat tulisan dan workshop.',
     ],
+    portfolio: [
+      {
+        'title': 'API E-commerce',
+        'description': 'REST API untuk sistem e-commerce dengan autentikasi JWT',
+        'tech': 'Node.js, Express, MongoDB'
+      },
+      {
+        'title': 'Chat Bot Telegram',
+        'description': 'Bot Telegram untuk informasi cuaca dan berita',
+        'tech': 'Node.js, Telegram Bot API'
+      },
+      {
+        'title': 'Database Management System',
+        'description': 'Sistem manajemen database untuk inventory toko',
+        'tech': 'MySQL, Node.js, Express'
+      },
+    ],
   ),
   PersonProfile(
     nama: 'kenjo',
@@ -90,6 +126,23 @@ final List<PersonProfile> people = [
       'Menjadi UI/UX Designer di perusahaan teknologi.',
       'Membuat brand guideline untuk komunitas lokal.',
       'Belajar front-end agar lebih komplet.',
+    ],
+    portfolio: [
+      {
+        'title': 'UI Design Aplikasi Keuangan',
+        'description': 'Desain interface untuk aplikasi manajemen keuangan pribadi',
+        'tech': 'Figma, Adobe Illustrator'
+      },
+      {
+        'title': 'Brand Identity Cafe Local',
+        'description': 'Pembuatan logo dan brand guideline untuk cafe lokal',
+        'tech': 'Adobe Illustrator, Photoshop'
+      },
+      {
+        'title': 'Motion Graphics Promo',
+        'description': 'Video promosi animasi untuk event komunitas',
+        'tech': 'After Effects, Figma'
+      },
     ],
   ),
 ];

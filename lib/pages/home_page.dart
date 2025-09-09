@@ -43,9 +43,9 @@ class _ProfileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final colors = [
-      [const Color(0xFF6366F1), const Color(0xFF8B5CF6)],
-      [const Color(0xFF06B6D4), const Color(0xFF3B82F6)],
-      [const Color(0xFF10B981), const Color(0xFF059669)],
+      [const Color(0xFFD2B48C), const Color(0xFFDEB887)],
+      [const Color(0xFFCD853F), const Color(0xFFD2B48C)],
+      [const Color(0xFFBC8F8F), const Color(0xFFD2B48C)],
     ];
     
     return Hero(

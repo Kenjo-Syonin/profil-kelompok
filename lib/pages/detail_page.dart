@@ -38,9 +38,9 @@ class _DetailPageState extends State<DetailPage>
 
   Color _getProfileColor() {
     final colors = [
-      const Color(0xFF6366F1),
-      const Color(0xFF06B6D4),
-      const Color(0xFF10B981),
+      const Color(0xFFD2B48C),
+      const Color(0xFFCD853F),
+      const Color(0xFFBC8F8F),
     ];
     return colors[widget.profile.nama.hashCode.abs() % colors.length];
   }
@@ -56,7 +56,7 @@ class _DetailPageState extends State<DetailPage>
         child: CustomScrollView(
           slivers: [
             SliverAppBar(
-              expandedHeight: 200,
+              expandedHeight: 250,
               pinned: true,
               backgroundColor: profileColor,
               foregroundColor: Colors.white,
@@ -71,7 +71,7 @@ class _DetailPageState extends State<DetailPage>
                   ),
                   child: SafeArea(
                     child: Padding(
-                      padding: const EdgeInsets.all(20),
+                      padding: const EdgeInsets.fromLTRB(20, 20, 20, 80),
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: [
@@ -80,17 +80,18 @@ class _DetailPageState extends State<DetailPage>
                             child: Avatar(
                               name: profile.nama,
                               photoUrl: profile.fotoUrl,
-                              radius: 40,
+                              radius: 35,
                             ),
                           ),
                           const SizedBox(height: 12),
                           Text(
                             profile.nama,
                             style: const TextStyle(
-                              fontSize: 24,
+                              fontSize: 20,
                               fontWeight: FontWeight.bold,
                               color: Colors.white,
                             ),
+                            textAlign: TextAlign.center,
                           ),
                         ],
                       ),
@@ -107,19 +108,22 @@ class _DetailPageState extends State<DetailPage>
                   Tab(icon: Icon(Icons.person_outline), text: 'Profil'),
                   Tab(icon: Icon(Icons.star_outline), text: 'Skills'),
                   Tab(icon: Icon(Icons.info_outline), text: 'Data'),
-                  Tab(icon: Icon(Icons.flag_outlined), text: 'Goals'),
+                  Tab(icon: Icon(Icons.work_outline), text: 'Portfolio'),
                 ],
               ),
             ),
-            SliverFillRemaining(
-              child: TabBarView(
-                controller: _tabController,
-                children: [
-                  _ProfilDiriTab(profile: profile),
-                  _KemampuanTab(kemampuan: profile.kemampuan),
-                  _DataDiriTab(dataDiri: profile.dataDiri),
-                  _CitaCitaTab(items: profile.citaCitaAtauHarapan),
-                ],
+            SliverToBoxAdapter(
+              child: SizedBox(
+                height: MediaQuery.of(context).size.height - 200,
+                child: TabBarView(
+                  controller: _tabController,
+                  children: [
+                    _ProfilDiriTab(profile: profile),
+                    _KemampuanTab(kemampuan: profile.kemampuan),
+                    _DataDiriTab(dataDiri: profile.dataDiri),
+                    _PortfolioTab(portfolio: profile.portfolio),
+                  ],
+                ),
               ),
             ),
           ],
@@ -215,16 +219,16 @@ class _KemampuanTab extends StatelessWidget {
               final index = entry.key;
               final skill = entry.value;
               final colors = [
-                Colors.blue.shade100,
-                Colors.green.shade100,
-                Colors.purple.shade100,
-                Colors.orange.shade100,
+                const Color(0xFFF5DEB3),
+                const Color(0xFFFFE4B5),
+                const Color(0xFFFAF0E6),
+                const Color(0xFFFDF5E6),
               ];
               final textColors = [
-                Colors.blue.shade700,
-                Colors.green.shade700,
-                Colors.purple.shade700,
-                Colors.orange.shade700,
+                const Color(0xFFD2B48C),
+                const Color(0xFFCD853F),
+                const Color(0xFFBC8F8F),
+                const Color(0xFFA0522D),
               ];
               
               return Container(
@@ -357,9 +361,9 @@ class _DataDiriTab extends StatelessWidget {
   }
 }
 
-class _CitaCitaTab extends StatelessWidget {
-  final List<String> items;
-  const _CitaCitaTab({required this.items});
+class _PortfolioTab extends StatelessWidget {
+  final List<Map<String, String>> portfolio;
+  const _PortfolioTab({required this.portfolio});
 
   @override
   Widget build(BuildContext context) {
@@ -371,13 +375,13 @@ class _CitaCitaTab extends StatelessWidget {
           Row(
             children: [
               Icon(
-                Icons.flag_outlined,
+                Icons.work_outline,
                 color: Theme.of(context).colorScheme.primary,
                 size: 24,
               ),
               const SizedBox(width: 8),
               Text(
-                'Cita-cita & Harapan',
+                'Portfolio & Proyek',
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.bold,
                 ),
@@ -385,47 +389,60 @@ class _CitaCitaTab extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 16),
-          ...items.asMap().entries.map((entry) {
-            final index = entry.key;
-            final goal = entry.value;
-            
+          ...portfolio.map((project) {
             return Container(
               margin: const EdgeInsets.only(bottom: 16),
               child: Card(
                 child: Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: Row(
+                  padding: const EdgeInsets.all(20),
+                  child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Container(
-                        width: 32,
-                        height: 32,
-                        decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                            colors: [
-                              Theme.of(context).colorScheme.primary,
-                              Theme.of(context).colorScheme.primary.withOpacity(0.7),
-                            ],
-                          ),
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: Center(
-                          child: Text(
-                            '${index + 1}',
-                            style: const TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 14,
+                      Row(
+                        children: [
+                          Container(
+                            padding: const EdgeInsets.all(8),
+                            decoration: BoxDecoration(
+                              color: Theme.of(context).colorScheme.primaryContainer,
+                              borderRadius: BorderRadius.circular(8),
+                            ),
+                            child: Icon(
+                              Icons.folder_outlined,
+                              color: Theme.of(context).colorScheme.onPrimaryContainer,
+                              size: 20,
                             ),
                           ),
+                          const SizedBox(width: 12),
+                          Expanded(
+                            child: Text(
+                              project['title'] ?? '',
+                              style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                      Text(
+                        project['description'] ?? '',
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          height: 1.5,
+                          color: Colors.grey.shade700,
                         ),
                       ),
-                      const SizedBox(width: 16),
-                      Expanded(
+                      const SizedBox(height: 12),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: Theme.of(context).colorScheme.secondaryContainer,
+                          borderRadius: BorderRadius.circular(16),
+                        ),
                         child: Text(
-                          goal,
-                          style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                            height: 1.5,
+                          project['tech'] ?? '',
+                          style: TextStyle(
+                            color: Theme.of(context).colorScheme.onSecondaryContainer,
+                            fontSize: 12,
                             fontWeight: FontWeight.w500,
                           ),
                         ),

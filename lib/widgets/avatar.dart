@@ -17,12 +17,12 @@ class Avatar extends StatelessWidget {
 
   Color _getGradientColor(String name) {
     final colors = [
-      const Color(0xFF6366F1),
-      const Color(0xFF06B6D4),
-      const Color(0xFF10B981),
-      const Color(0xFFF59E0B),
-      const Color(0xFFEF4444),
-      const Color(0xFF8B5CF6),
+      const Color(0xFFD2B48C),
+      const Color(0xFFCD853F),
+      const Color(0xFFBC8F8F),
+      const Color(0xFFDEB887),
+      const Color(0xFFBDB76B),
+      const Color(0xFFA0522D),
     ];
     return colors[name.hashCode.abs() % colors.length];
   }

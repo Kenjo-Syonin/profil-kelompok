@@ -16,8 +16,12 @@ class ProfileApp extends StatelessWidget {
       theme: ThemeData(
         useMaterial3: true,
         colorScheme: ColorScheme.fromSeed(
-          seedColor: const Color(0xFF6366F1),
+          seedColor: const Color(0xFFD2B48C),
           brightness: Brightness.light,
+        ).copyWith(
+          primary: const Color(0xFFD2B48C),
+          secondary: const Color(0xFFDEB887),
+          surface: const Color(0xFFFAF0E6),
         ),
         cardTheme: CardTheme(
           elevation: 0,
